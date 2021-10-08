@@ -36,7 +36,7 @@ about:
   description: Romain Comoretto, intervenant auprès de la filière Web marketing, vous
     explique en quoi elle consiste.
   href: https://www.youtube.com/embed/ZLx18d89pNo
-  image: "/uploads/nws_youtube_web_marketing.png"
+  image: "/uploads/nws_youtube_web_marketing.jpg"
 skills:
   enable: true
   title: Les Compétences
