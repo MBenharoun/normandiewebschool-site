@@ -377,37 +377,6 @@ tarteaucitron.services.podcloud = {
     }
 };
 
-// facebookpost
-tarteaucitron.services.facebookpost = {
-    "key": "facebookpost",
-    "type": "social",
-    "name": "Facebook (post)",
-    "uri": "https://www.facebook.com/policy.php",
-    "needConsent": true,
-    "cookies": [],
-    "js": function () {
-        "use strict";
-        tarteaucitron.fallback(['tac_facebookpost'], function (x) {
-            var frame_title = tarteaucitron.fixSelfXSS(x.getAttribute("title") || 'Facebook iframe'),
-                width = x.getAttribute("width"),
-                height = x.getAttribute("height"),
-                url = x.getAttribute("data-url"),
-                appId = x.getAttribute("data-appid"),
-                allowfullscreen = x.getAttribute("allowfullscreen");
-
-            return '<iframe title="' + frame_title + '" src="https://www.facebook.com/plugins/post.php?href=' + encodeURIComponent(url) + '&amp;width=' + width + '&amp;show_text=false&amp;appId=' + appId + '&amp;height=' + height + '" width="' + width + '" height="' + height + '" scrolling="auto" allowtransparency ' + (allowfullscreen == '0' ? '' : ' webkitallowfullscreen mozallowfullscreen allowfullscreen') + '></iframe>';
-        });
-    },
-    "fallback": function () {
-        "use strict";
-        var id = 'facebookpost';
-        tarteaucitron.fallback(['tac_facebookpost'], function (elem) {
-            elem.style.width = elem.getAttribute('width') + 'px';
-            elem.style.height = elem.getAttribute('height') + 'px';
-            return tarteaucitron.engage(id);
-        });
-    }
-};
 
 // amplitude
 tarteaucitron.services.amplitude = {
@@ -3561,33 +3530,7 @@ tarteaucitron.services.xiti_smarttag = {
     }
 };
 
-// facebook pixel
-tarteaucitron.services.facebookpixel = {
-    "key": "facebookpixel",
-    "type": "ads",
-    "name": "Facebook Pixel",
-    "uri": "https://www.facebook.com/policy.php",
-    "needConsent": true,
-    "cookies": ['datr', 'fr', 'reg_ext_ref', 'reg_fb_gate', 'reg_fb_ref', 'sb', 'wd', 'x-src'],
-    "js": function () {
-        "use strict";
-        var n;
-        if(window.fbq)return;
-        n=window.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)} ;
-        if(!window._fbq)window._fbq=n;
-        n.push=n;
-        n.loaded=!0;
-        n.version='2.0';
-        n.queue=[];
-        tarteaucitron.addScript('https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', tarteaucitron.user.facebookpixelId);
-        fbq('track', 'PageView');
 
-        if (typeof tarteaucitron.user.facebookpixelMore === 'function') {
-            tarteaucitron.user.facebookpixelMore();
-        }
-    }
-};
 
 //Issuu
 tarteaucitron.services.issuu = {
